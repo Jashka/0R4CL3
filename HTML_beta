@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)http://enigma.louisedade.co.uk/enigma.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The ORACLE Machine</title>
+<!--Original Source Code Author "Louise Dade"-->
+<meta name="author" content="Henry Sage">
+<!--Original description was "A fully working emulation of a Navy M3 Enigma Machine."-->
+<meta name="description" content="ORACLE is the new and improved ENIGMA.">
+<!--Original keywords were "enigma machine, enigma, Navy M3, codebreaking, codes, code breaking, ciphers, ciphertext"-->
+<meta name="keywords" content="codebreaking, codes, code breaking, ciphers, ORACLE">
+<link rel="stylesheet" media="screen" href="./navy-m3_m4-enigma-machine-emulator_files/fonts.css">
+<link rel="stylesheet" media="screen" href="./navy-m3_m4-enigma-machine-emulator_files/enigma.css">
+<script src="./navy-m3_m4-enigma-machine-emulator_files/enigma.js.download"></script>
+<link rel="shortcut icon" href="http://enigma.louisedade.co.uk/favicon.ico">
+</head>
+<body>
+<div id="wrapper"><div id="content">
+<header id="header">
+	<h1>The ORACLE Machine</h1>
+   <hr />
+<!--This website owes partial credit to Louise Dade.-->
+	<div class="header-notice"><b>Note:</b> Property of Mr. Sage.</div>
+   <div class="header-notice"><b>Remember:</b> This site is for YOUR EYES ONLY. Under no circumstances are you to share the link. Failure to comply leads to immediate removal from the project.</div>
+</header>
+<hr />
+<h3><b>Instructions</b></h3>
+<!--INSTRUCTIONS HERE-->
+<div id="savearea"></div>
+
+<form id="oracle" name="oracle" method="GET" action="http://enigma.louisedade.co.uk/enigma.html">
+<table id="wheels">
+<tbody><tr>
+  <th>
+	<label for="oracle_type" accesskey="u">ORACLE Type:</label>
+  </th>
+  <td>
+    <select id="oracle_type">
+    <option value="m3" selected="selected">ORACLE v1</option>
+    <option value="m4">ORACLE v2</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="use_reflector" id="ur" accesskey="u" lang="de" title="Reflector Wheel">Reversing Roller:</label>
+	<label for="use_reflector_thin" id="urt" accesskey="u" lang="de" title="Reflector Wheel" style="display: none;">Reversing Roller:</label>
+  </th>
+  <td>
+    <select id="use_reflector">
+    <option value="b" selected="selected">--- 1 ---</option>
+    <option value="c">--- 2 ---</option>
+    </select>
+    <select id="use_reflector_thin" style="display: none;">
+    <option value="b_thin" selected="selected">--- 1 (thin) ---</option>
+    <option value="c_thin">--- 2 (thin) ---</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="leftw_no" accesskey="w" lang="de" title="Wheel Order">Roller Position:</label>
+  </th>
+  <td class="settings">
+
+    <select id="greek_no" style="display: none;">
+    <option value="a" selected="selected">Alpha</option>
+    <option value="o">Omega</option>
+    </select>
+
+    <select id="leftw_no">
+    <option value="1" selected="selected">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    </select>
+
+    <select id="middlew_no">
+    <option value="1">1</option>
+    <option value="2" selected="selected">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    </select>
+
+    <select id="rightw_no">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3" selected="selected">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+    <option value="7">7</option>
+    <option value="8">8</option>
+    </select>
+  </td>
+</tr>
+<tr>
+  <th>
+	<label for="leftw_ring" accesskey="r" lang="de" title="Ring Setting">Ring Position:</label>
+  </th>
+  <td class="settings">
+	<input type="text" id="greek_ring" size="3" maxlength="1" value="A" style="display: none;">
+	<input type="text" id="leftw_ring" size="3" maxlength="1" value="A">
+	<input type="text" id="middlew_ring" size="3" maxlength="1" value="A">
+	<input type="text" id="rightw_ring" size="3" maxlength="1" value="A">
+  </td>
+</tr>
+<tr>
+  <th><label for="leftw_set" accesskey="g" lang="de" title="Ground Setting">Basic Position:</label></th>
+  <td class="settings">
+	<input type="text" id="greek_set" size="3" maxlength="1" value="A" style="display: none;">
+	<input type="text" id="leftw_set" size="3" maxlength="1" value="A">
+	<input type="text" id="middlew_set" size="3" maxlength="1" value="A">
+	<input type="text" id="rightw_set" size="3" maxlength="1" value="A">
+  </td>
+</tr>
+</tbody></table>
+
+<table id="plugboard">
+<tbody><tr><th colspan="13"><span lang="de" title="Plugboard">Plug Connector</span></th></tr>
+<tr><td>
+<label for="plug1" accesskey="s">A</label> <input type="text" id="plug1" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug2">B</label> <input type="text" id="plug2" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug3">C</label> <input type="text" id="plug3" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug4">D</label> <input type="text" id="plug4" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug5">E</label> <input type="text" id="plug5" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug6">F</label> <input type="text" id="plug6" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug7">G</label> <input type="text" id="plug7" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug8">H</label> <input type="text" id="plug8" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug9">I</label> <input type="text" id="plug9" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug10">J</label> <input type="text" id="plug10" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug11">K</label> <input type="text" id="plug11" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug12">L</label> <input type="text" id="plug12" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug13">M</label> <input type="text" id="plug13" size="3" maxlength="1" value="">
+</td></tr>
+<tr><td>
+<label for="plug14">N</label> <input type="text" id="plug14" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug15">O</label> <input type="text" id="plug15" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug16">P</label> <input type="text" id="plug16" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug17">Q</label> <input type="text" id="plug17" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug18">R</label> <input type="text" id="plug18" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug19">S</label> <input type="text" id="plug19" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug20">T</label> <input type="text" id="plug20" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug21">U</label> <input type="text" id="plug21" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug22">V</label> <input type="text" id="plug22" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug23">W</label> <input type="text" id="plug23" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug24">X</label> <input type="text" id="plug24" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug25">Y</label> <input type="text" id="plug25" size="3" maxlength="1" value="">
+</td><td>
+<label for="plug26">Z</label> <input type="text" id="plug26" size="3" maxlength="1" value="">
+</td></tr>
+</tbody></table>
+
+<div id="lightboard">
+<b class="led_off" id="l_Q">Q</b>
+<b class="led_off" id="l_W">W</b>
+<b class="led_off" id="l_E">E</b>
+<b class="led_off" id="l_R">R</b>
+<b class="led_off" id="l_T">T</b>
+<b class="led_off" id="l_Z">Z</b>
+<b class="led_off" id="l_U">U</b>
+<b class="led_off" id="l_I">I</b>
+<b class="led_off" id="l_O">O</b><br>
+<b class="led_off" id="l_A">A</b>
+<b class="led_off" id="l_S">S</b>
+<b class="led_off" id="l_D">D</b>
+<b class="led_off" id="l_F">F</b>
+<b class="led_off" id="l_G">G</b>
+<b class="led_off" id="l_H">H</b>
+<b class="led_off" id="l_J">J</b>
+<b class="led_off" id="l_K">K</b><br>
+<b class="led_off" id="l_P">P</b>
+<b class="led_off" id="l_Y">Y</b>
+<b class="led_off" id="l_X">X</b>
+<b class="led_off" id="l_C">C</b>
+<b class="led_off" id="l_V">V</b>
+<b class="led_off" id="l_B">B</b>
+<b class="led_off" id="l_N">N</b>
+<b class="led_off" id="l_M">M</b>
+<b class="led_off" id="l_L">L</b>
+</div>
+
+<table id="keyboard">
+<tbody><tr>
+<td colspan="2" class="typeletter">
+    <label for="textin" accesskey="t">Type Letter:</label> 
+    <input type="text" id="textin" size="3" maxlength="1" value="">
+</td>
+</tr>
+<tr>
+<td>
+    <label for="msg_in">Message/Cipher Text In:</label><br>
+    <textarea id="msg_in" cols="30" rows="4" value="" readonly="readonly"></textarea>
+</td>
+<td>
+    <label for="msg_out">Cipher/Clear Text Out:</label><br>
+    <textarea id="msg_out" cols="30" rows="4" value="" readonly="readonly"></textarea>
+</td>
+</tr>
+<tr>
+<td colspan="2"><label for="letter_grouping">Group letters in sets of:</label> 
+    <select id="letter_grouping">
+    <option value="3"> 3 </option>
+    <option value="4" selected="selected"> 4 </option>
+    <option value="5"> 5 </option>
+    <option value="6"> 6 </option>
+    <option value="7"> 7 </option>
+    <option value="8"> 8 </option>
+    <option value="9"> 9 </option>
+    <option value="10"> 10 </option>	
+    </select>
+</td>
+</tr>
+<tr>
+<td colspan="2">Input Method: 
+	<label><input type="radio" name="input_method" id="single" value="single" checked="checked"> Single letter</label>, 
+	<label><input type="radio" name="input_method" id="block" value="block"> Block of text</label> 
+</td>
+</tr>
+<tr id="blockinput" style="display: none;">
+<td colspan="2">
+	<textarea id="txt_in" cols="60" rows="6"></textarea><br>
+	<input type="button" id="startbtn" value="Encipher/Decipher Text">
+</td>
+</tr>
+</tbody></table>
+
+
+</form>
+<hr />
+<p><i>If you would like to make changes to the source code, contact the programmer via 5463.sage@gmail.com for the files.</i></p>
+
+<div id="jsmsg" style="display: none;">
+<p><strong>Your browser does not support some of the Javascript functions this emulator requires.</strong></p>
+</div>
+
+</div></div>
+<hr />
+
+<footer id="footer">
+<p><b>The ORACLE Machine</b></p>
+<p><b>Remember:</b> This site is for YOUR EYES ONLY. DO NOT share the link. We are trusting you to keep this project secret.</p>
+</footer>
+
+</body></html>
